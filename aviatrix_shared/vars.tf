@@ -3,7 +3,6 @@ variable "name_suffix" {}
 variable "region" {}
 variable "gw_size" {}
 variable "vpc_name" {}
-variable "path_public_key" {}
 variable "account_name" {}
 variable "transit_gw" {}
 variable "vpc_count" {

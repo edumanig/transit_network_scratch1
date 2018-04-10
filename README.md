@@ -2,6 +2,8 @@ Description
 -----------
 Terraform configuration files to create transit network VPC, shared services VPC and simulated OnPrem Network
 
+Note: no additional linux instances created
+
 Pre-Requisites
 --------------
     * AWS Account and credentials

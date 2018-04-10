@@ -6,7 +6,6 @@ variable "transit_gateway_name" {}
 variable "spoke_region" {}
 variable "spoke_gw_size" {}
 variable "shared_gw_name" {}
-variable "path_public_key" {}
 
 variable "AMI" {
   type = "map"

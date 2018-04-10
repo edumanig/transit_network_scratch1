@@ -53,13 +53,6 @@ resource "aws_route_table_association" "OnPrem-VPC-ra" {
 }
 ## END -------------------------------
 
-# Create AWS Key Pair 
-# -don't need to create a new one and use existing
-## -----------------------------------
-#resource "aws_key_pair" "onprem_keypair" {
-#  key_name = "onprem_keypair"
-#  public_key = "${file("${var.onprem_path_public_key}")}"
-#}
 
 ## END -------------------------------
 
@@ -95,27 +88,6 @@ resource "aws_security_group" "allow-ssh-ping" {
     }
 }
 ## END -------------------------------
-
-# Create OnPrem Linux VM
-## -----------------------------------
-resource "aws_instance" "Linux-On-Prem" {
-    count = "${var.onprem_count}"
-    ami           = "${lookup(var.AMI, var.region)}"
-    instance_type = "${var.onprem_gw_size}"
-    # the VPC subnet
-    subnet_id = "${element(aws_subnet.OnPrem-VPC-public.*.id,count.index)}"
-    # the security group
-    vpc_security_group_ids = ["${aws_security_group.allow-ssh-ping.id}"]
-    # the public SSH key
-    key_name = "${aws_key_pair.onprem_keypair.key_name}"
-    tags {
-        Name = "Linux-On-Prem"
-    } 
-    depends_on = ["aws_subnet.OnPrem-VPC-public","aws_route_table.OnPrem-VPC-route","aws_internet_gateway.OnPrem-VPC-gw","aws_vpc.OnPrem-VPC"]
-}
-    #ami           = "ami-0def3275"
-## END -------------------------------
-
 
 ## Create Aviatrix OnPrem gateway
 ## -----------------------------------

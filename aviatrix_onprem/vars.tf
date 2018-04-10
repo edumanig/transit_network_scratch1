@@ -6,7 +6,6 @@ variable "onprem_gw_name" {}
 variable "onprem_gw_size" {}
 variable "region" {}
 variable "vgw_id" {}
-variable "onprem_path_public_key" {}
 variable "remote_subnet" {}
 variable "transit_gw" {}
 
@@ -23,14 +22,3 @@ variable "AMI" {
 
   }
 }
-#variable "INSTANCE_USERNAME" {
-#  default = "ubuntu"
-#}
-#variable "PATH_TO_PRIVATE_KEY" {
-#  default = "mykey"
-#}
-#variable "PATH_TO_PUBLIC_KEY" {
-#  default = "mykey.pub"
-#}
-
-

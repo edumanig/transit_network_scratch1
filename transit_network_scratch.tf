@@ -55,7 +55,6 @@ module "shared_services_vpc" {
   cidr_prefix = "${var.shared_cidr_prefix}"
   vpc_name = "shared"
   transit_gw = "${element(module.transit_vpc.transit_gateway_name,0)}"
-  path_public_key = "${var.PATH_TO_PUBLIC_KEY}"
 }
 # Create OnPrem spoke
 module "onprem" {
@@ -71,7 +70,6 @@ module "onprem" {
   onprem_gw_size = "${var.onprem_gateway_size}"
   name_suffix = "${var.onprem_gateway_name}"
   onprem_cidr_prefix = "${var.onprem_cidr_prefix}"
-  onprem_path_public_key = "${var.PATH_TO_PUBLIC_KEY}"
   remote_subnet = "${var.s2c_remote_subnet}"
   transit_gw = "${element(module.transit_vpc.transit_gateway_name,0)}"
 }
@@ -89,7 +87,6 @@ module "spoke_us_east_1" {
   name_suffix = "arvind-us-east-1"
   shared_gw_name = "${var.shared_gateway_name}"
   spoke_cidr_prefix = "${var.spoke_cidr_prefix_us_east_1}"
-  path_public_key = "${var.PATH_TO_PUBLIC_KEY}"
 }
 
 module "spoke_us_east_2" {
@@ -105,7 +102,6 @@ module "spoke_us_east_2" {
   name_suffix = "module-us-east-2"
   shared_gw_name = "${var.shared_gateway_name}"
   spoke_cidr_prefix = "${var.spoke_cidr_prefix_us_east_2}"
-  path_public_key = "${var.PATH_TO_PUBLIC_KEY}"
 }
 
 module "spoke_us_west_1" {
@@ -121,7 +117,6 @@ module "spoke_us_west_1" {
   name_suffix = "module-us-west-1"
   shared_gw_name = "${var.shared_gateway_name}"
   spoke_cidr_prefix = "${var.spoke_cidr_prefix_us_west_1}"
-  path_public_key = "${var.PATH_TO_PUBLIC_KEY}"
 }
 
 module "spoke_us_west_2" {
@@ -137,5 +132,4 @@ module "spoke_us_west_2" {
   spoke_gw_size = "${var.spoke_gateway_size}"
   shared_gw_name = "${var.shared_gateway_name}"
   spoke_cidr_prefix = "${var.spoke_cidr_prefix_us_west_2}"
-  path_public_key = "${var.PATH_TO_PUBLIC_KEY}"
 }

@@ -102,37 +102,6 @@ resource "aviatrix_spoke_vpc" "test_spoke" {
     depends_on = ["aws_route_table_association.spoke-VPC-ra","aws_route_table_association.spoke-VPC-ra-ha"]
 }
 
-## Create SPOKE Linux VM Instances
-## -----------------------------------
-#Spoke Linux VMs
-resource "aws_instance" "Linux" {
-    ami           = "${lookup(var.AMI, var.region)}"
-    instance_type = "${var.gw_size}"
-    count = "${var.vpc_count}"
-
-    # the VPC subnet
-    subnet_id = "${element(aws_subnet.spoke-VPC-public.*.id,count.index)}"
-
-    # the security group
-    vpc_security_group_ids = ["${aws_security_group.allow-ssh-ping-VPC.id}"]
-
-    # the public SSH key
-    key_name = "${aws_key_pair.shared_keypair.key_name}"
-
-    tags{
-      Name = "${var.name_suffix}-Linux-${var.region}"
-    } 
-    depends_on = ["aws_vpc.spoke-VPC","aws_route_table_association.spoke-VPC-ra","aws_route_table_association.spoke-VPC-ra-ha"]
-}
-## END -------------------------------
-# Create AWS Key Pair
-# don't need to create a new one and use existing pair
-## -----------------------------------
-#resource "aws_key_pair" "shared_keypair" {
-#    key_name = "shared_keypair"
-#    public_key = "${file("${var.path_public_key}")}"
-#    depends_on = ["aws_route_table_association.spoke-VPC-ra","aws_route_table_association.spoke-VPC-ra-ha"]
-#}
 ## END -------------------------------
 ## Security Group Spoke Side
 ## -----------------------------------
