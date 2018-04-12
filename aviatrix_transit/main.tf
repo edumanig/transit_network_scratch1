@@ -72,9 +72,9 @@ resource "aviatrix_transit_vpc" "test_transit_gw" {
     vpc_reg = "${var.region}"
     vpc_size = "${var.gw_size}"
     subnet = "${aws_subnet.public.cidr_block}"
+    ha_subnet = "${aws_subnet.public.cidr_block}"
     depends_on = ["aws_route_table_association.VPC-ra","aws_subnet.public","aws_vpc.VPC"]
 }
-    #ha_subnet = "${aws_subnet.public.cidr_block}"
 
 # Create VGW connection with transit VPC.
 resource "aviatrix_vgw_conn" "test_vgw_conn" {

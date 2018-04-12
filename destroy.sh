@@ -2,4 +2,4 @@
 
 HOME=/home/ubuntu
 
-terraform  destroy -force -var-file=$HOME/13.57.159.116.secret.tfvars
+terraform  destroy -force -var-file=$HOME/52.52.3.186.secret.tfvars
